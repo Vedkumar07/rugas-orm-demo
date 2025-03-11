@@ -9,8 +9,6 @@ export function UserListing() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-
-  // Get admin token from cookies
   const getAdminToken = () => {
     const cookies = document.cookie.split("; ");
     for (let cookie of cookies) {
@@ -22,12 +20,8 @@ export function UserListing() {
     return null;
   };
 
-  // Get user token from localStorage or cookies
   const getUserToken = () => {
-    // Try localStorage first
     let token = localStorage.getItem('TOKENS');
-    
-    // If not in localStorage, try cookies
     if (!token) {
       const cookies = document.cookie.split("; ");
       for (let cookie of cookies) {
@@ -48,8 +42,6 @@ export function UserListing() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    
-    // Form validation
     if (!name || !address || !phoneNumber || !email) {
       setError("All fields are required");
       return;
@@ -63,7 +55,6 @@ export function UserListing() {
     setIsSubmitting(true);
     
     try {
-      // Get the best available token (admin token preferred)
       const token = getAdminToken() || getUserToken();
       
       if (!token) {
@@ -72,7 +63,7 @@ export function UserListing() {
         return;
       }
       
-      const response = await fetch('http://localhost:8000/user/add', {
+      const response = await fetch('https://rugas-orm-demo-ajii.onrender.com/user/add', {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -92,15 +83,10 @@ export function UserListing() {
       
       const res = await response.json();
       console.log("Parsed response:", res);
-      
-      // Check if the response contains a token
       if (res.token) {
-        // Store token in BOTH localStorage and cookies for consistency
         localStorage.setItem('TOKENS', res.token);
         document.cookie = `TOKENS=${res.token}; path=/; max-age=86400`;
       }
-      
-      // Navigate to UserListed page
       navigate("/UserListed", { state: { response: res } });
       console.log("Successfully added user");
     } catch (error) {

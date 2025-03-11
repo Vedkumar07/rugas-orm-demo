@@ -31,7 +31,7 @@ export function ProductListing() {
     }
 
     try {
-        const response = await fetch("http://localhost:8000/product/add", {
+        const response = await fetch("https://rugas-orm-demo-ajii.onrender.com/product/add", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,

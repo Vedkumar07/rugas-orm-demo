@@ -24,7 +24,7 @@ export function Purchese() {
       return;
     }
 
-    fetch("http://localhost:8000/user/boughtProduct", {
+    fetch("https://rugas-orm-demo-ajii.onrender.com/user/boughtProduct", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

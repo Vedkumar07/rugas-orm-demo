@@ -22,7 +22,7 @@ export function ProductListed() {
       return;
     }
 
-    fetch("http://localhost:8000/product/productBulk", {
+    fetch("https://rugas-orm-demo-ajii.onrender.com/product/productBulk", {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -32,7 +32,7 @@ export function ProductListed() {
       .then((res) => res.json())
       .then((data) => {
         if (data.productBulk) {
-          console.log("Products loaded:", data.productBulk); // Log products for debugging
+          console.log("Products loaded:", data.productBulk); 
           setProducts(Array.isArray(data.productBulk) ? data.productBulk : []);
         } else {
           console.error("Unexpected response format:", data);
@@ -44,7 +44,6 @@ export function ProductListed() {
   }, []);
 
   const handleBuyProduct = (productId) => {
-    // Log the productId to verify it's correct
     console.log("Selected Product ID:", productId);
     
     if (!productId) {
@@ -52,11 +51,7 @@ export function ProductListed() {
       alert("Unable to process purchase: Missing product information");
       return;
     }
-
-    // Check both localStorage and cookies for the token
     let token = localStorage.getItem('TOKENS');
-    
-    // If not in localStorage, try cookies
     if (!token) {
       const cookies = document.cookie.split("; ");
       for (let cookie of cookies) {
@@ -77,7 +72,7 @@ export function ProductListed() {
       return;
     }
   
-    fetch("http://localhost:8000/user/buy", {
+    fetch("https://rugas-orm-demo-ajii.onrender.com/user/buy", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`,

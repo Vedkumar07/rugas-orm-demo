@@ -7,9 +7,7 @@ import { ProductListed } from './Component/ProductListed'
 import { UserPage } from './page/UserPage' 
 import { UserListed } from './Component/userListed'
 import { Purchese } from './Component/Purchese'
-//import { Home } from './page/Home'
-//import { ChatComponent } from './Component/ChatComponent'
-//import { CreateChannel } from './Component/CreateChannel'
+
 
 function App() {
   function Layout(out){
@@ -17,7 +15,7 @@ function App() {
     {/* Sidebar Navbar */}
     <nav className="bg-gray-900 p-4 flex items-center justify-between shadow-md">
     <h1 className="text-xl font-semibold">RUGAS</h1>
-    <NavBar /> {/* Add navigation links here */}
+    <NavBar /> 
   </nav>
 
 
@@ -39,9 +37,6 @@ function App() {
             <Route path="/userPage" element={<UserPage />} />
             <Route path="/UserListed" element={<UserListed />} />
             <Route path="/Purchese" element={<Purchese />} />
-            {/* <Route path="/Home" element={<Home />} />
-            <Route path='/ChatComponent' element={<ChatComponent />} />
-            <Route path='/CreateChannel' element={<CreateChannel />} /> */}
            </Route> 
         </Routes>
       </BrowserRouter>

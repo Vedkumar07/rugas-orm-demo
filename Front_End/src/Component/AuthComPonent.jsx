@@ -8,7 +8,7 @@ export function Signup(){
     const[name,setName]=useState();
     const handleSubmit=async (e)=>{
         e.preventDefault();
-      await fetch("http://localhost:8000/admin/signup",{
+      await fetch("https://rugas-orm-demo-ajii.onrender.com/admin/signup",{
             method:"POST",
             credentials: "include", 
              headers: {
@@ -117,7 +117,7 @@ export function Signin(){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-          const response = await fetch('http://localhost:8000/admin/signin', {
+          const response = await fetch('https://rugas-orm-demo-ajii.onrender.com/admin/signin', {
               method: "POST",
               headers: {
                   "Content-Type": "application/json",

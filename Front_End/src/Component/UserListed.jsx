@@ -8,33 +8,24 @@ export function UserListed() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Check for admin token first (named "TOKEN")
         let adminToken = null;
         let userToken = null;
-        
-        // Check cookies for both types of tokens
         const cookies = document.cookie.split("; ");
         for (let cookie of cookies) {
           const [key, value] = cookie.split("=");
-          // Admin token (from your first file, it's lowercase "token")
           if (key.trim().toLowerCase() === "token") {
             adminToken = decodeURIComponent(value);
           }
-          // User token (from your second file, it's "TOKENS")
           if (key === "TOKENS") {
             userToken = decodeURIComponent(value);
           }
         }
-        
-        // Also check localStorage for user token
         if (!userToken) {
           userToken = localStorage.getItem('TOKENS');
         }
         
         console.log("Admin Token:", adminToken);
         console.log("User Token:", userToken);
-        
-        // Use admin token preferentially if available, otherwise use user token
         const tokenToUse = adminToken || userToken;
 
         if (!tokenToUse) {
@@ -44,7 +35,7 @@ export function UserListed() {
           return;
         }
 
-        const response = await fetch("http://localhost:8000/user/getUser", {
+        const response = await fetch("https://rugas-orm-demo-ajii.onrender.com/user/getUser", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${tokenToUse}`,
