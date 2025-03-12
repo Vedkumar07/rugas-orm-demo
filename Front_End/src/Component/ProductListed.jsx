@@ -68,7 +68,7 @@ export function ProductListed() {
     if (!token) {
       console.error("No token found, authentication required.");
       alert("You need to log in to purchase products.");
-      navigate("/login");
+      navigate("/admin");
       return;
     }
   
