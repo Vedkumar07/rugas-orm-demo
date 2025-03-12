@@ -5,7 +5,7 @@ import { AuthPage } from './page/AuthPage'
 import { ProductPage } from './page/ProductPage'
 import { ProductListed } from './Component/ProductListed'
 import { UserPage } from './page/UserPage' 
-import { UserListed } from './Component/userListed'
+import { UserListed } from './Component/UserListed'
 import { Purchese } from './Component/Purchese'
 
 
