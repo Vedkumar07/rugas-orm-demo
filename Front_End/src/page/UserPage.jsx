@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { UserListed } from "../Component/userListed"; 
-import { UserListing } from "../Component/userListing"; 
+import { UserListed } from "../Component/ListUser"; 
+import { UserListing } from "../Component/ListingUser"; 
 
 export function UserPage() {
   const [state, setState] = useState(false);
