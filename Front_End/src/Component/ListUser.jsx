@@ -57,7 +57,7 @@ export function UserListed() {
           if (response.status === 403) {
             console.error("Token might be expired or invalid.");
             alert("Your session has expired. Please log in again.");
-            navigate("/login");
+            navigate("/auth");
             return;
           }
           throw new Error(`HTTP error! status: ${response.status}`);
