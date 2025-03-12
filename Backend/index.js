@@ -7,7 +7,6 @@ const {createAdmin}=require("./Routes/admin");
 const{createUser}=require("./Routes/user");
 const{productList}=require("./Routes/product")
 const port=process.env.PORT;
-console.log("front_end : ", process.env.Front_End)
 const corsOptions = {
     origin: process.env.Front_End, // Explicitly set frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
