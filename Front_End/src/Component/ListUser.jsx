@@ -41,7 +41,7 @@ export function UserListed() {
         if (!tokenToUse) {
           console.error("No token found, authentication required.");
           alert("Authentication required. Please log in.");
-          navigate("/login");
+          navigate("/auth");
           return;
         }
 
