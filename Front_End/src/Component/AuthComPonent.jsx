@@ -8,7 +8,7 @@ export function Signup(){
     const[name,setName]=useState();
     const handleSubmit=async (e)=>{
         e.preventDefault();
-      await fetch("https://rugas-orm-demo-ajii.onrender.com/admin/signup",{
+      await fetch("https://rugas-orm-demo-2bsk-git-main-ved-kumars-projects-b373e65a.vercel.app/admin/signup",{
             method:"POST",
             credentials: "include", 
              headers: {
@@ -117,7 +117,7 @@ export function Signin(){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-          const response = await fetch('https://rugas-orm-demo-ajii.onrender.com/admin/signin', {
+          const response = await fetch('https://rugas-orm-demo-2bsk-git-main-ved-kumars-projects-b373e65a.vercel.app/admin/signin', {
               method: "POST",
               headers: {
                   "Content-Type": "application/json",

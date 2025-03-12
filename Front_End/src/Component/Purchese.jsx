@@ -24,7 +24,7 @@ export function Purchese() {
       return;
     }
 
-    fetch("https://rugas-orm-demo-ajii.onrender.com/user/boughtProduct", {
+    fetch("https://rugas-orm-demo-2bsk-git-main-ved-kumars-projects-b373e65a.vercel.app/user/boughtProduct", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

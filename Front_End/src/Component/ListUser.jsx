@@ -44,7 +44,7 @@ export function UserListed() {
           return;
         }
 
-        const response = await fetch("/user/getUser", {
+        const response = await fetch("https://rugas-orm-demo-2bsk-git-main-ved-kumars-projects-b373e65a.vercel.app/user/getUser", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${tokenToUse}`,

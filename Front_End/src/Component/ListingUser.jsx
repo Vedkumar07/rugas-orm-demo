@@ -63,7 +63,7 @@ export function UserListing() {
         return;
       }
       
-      const response = await fetch('https://rugas-orm-demo-ajii.onrender.com/user/add', {
+      const response = await fetch('https://rugas-orm-demo-2bsk-git-main-ved-kumars-projects-b373e65a.vercel.app/user/add', {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
