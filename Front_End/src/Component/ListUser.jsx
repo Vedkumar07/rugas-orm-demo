@@ -36,6 +36,7 @@ export function UserListed() {
         
         // Use admin token preferentially if available, otherwise use user token
         const tokenToUse = adminToken || userToken;
+        console.log("token:",tokenToUse);
 
         if (!tokenToUse) {
           console.error("No token found, authentication required.");
