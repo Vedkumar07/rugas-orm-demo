@@ -52,6 +52,10 @@ export function UserListed() {
             "Content-Type": "application/json",
           },
         });
+        
+        const dataA = await response.json();
+        console.log("API Response:", dataA); // Debug API response
+        
 
         if (!response.ok) {
           if (response.status === 403) {

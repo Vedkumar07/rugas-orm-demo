@@ -9,6 +9,8 @@ export function UserListing() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [warning, setWarning] = useState("");
+  
   const getAdminToken = () => {
     const cookies = document.cookie.split("; ");
     for (let cookie of cookies) {
@@ -32,7 +34,6 @@ export function UserListing() {
         }
       }
     }
-    
     return token;
   };
 
@@ -42,6 +43,8 @@ export function UserListing() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setWarning("");
+    
     if (!name || !address || !phoneNumber || !email) {
       setError("All fields are required");
       return;
@@ -52,17 +55,16 @@ export function UserListing() {
       return;
     }
     
+    const token = getAdminToken() || getUserToken();
+    
+    if (!token) {
+      setWarning("Authentication required. Please log in first.");
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
-      const token = getAdminToken() || getUserToken();
-      
-      if (!token) {
-        setError("Authentication required. Please log in first.");
-        setIsSubmitting(false);
-        return;
-      }
-      
       const response = await fetch('https://rugas-orm-demo-2bsk-git-main-ved-kumars-projects-b373e65a.vercel.app/user/add', {
         method: "POST",
         headers: {
@@ -87,7 +89,6 @@ export function UserListing() {
         localStorage.setItem('TOKENS', res.token);
         document.cookie = `TOKENS=${res.token}; path=/; max-age=86400`;
       }
-      navigate("/UserListed", { state: { response: res } });
       console.log("Successfully added user");
     } catch (error) {
       console.error("Error adding user:", error);
@@ -110,6 +111,11 @@ export function UserListing() {
           {error && (
             <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
               {error}
+            </div>
+          )}
+          {warning && (
+            <div className="mb-4 p-3 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded">
+              {warning}
             </div>
           )}
           
@@ -143,40 +149,6 @@ export function UserListing() {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   autoComplete="street-address"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="phoneNumber" className="block text-sm font-medium">
-                Phone Number
-              </label>
-              <div className="mt-2">
-                <input
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  type="tel"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  autoComplete="tel"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium">
-                Email
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
                 />
               </div>
